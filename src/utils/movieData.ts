@@ -1,3 +1,4 @@
+
 import { MovieDetails, RecommendedMovie } from "@/types/movie";
 
 // Top-rated movies dataset (expanded)
@@ -470,4 +471,159 @@ const moviesData: MovieDetails[] = [
     rating: 7.5,
     director: "John Krasinski",
     plot: "In a post-apocalyptic world, a family is forced to live in silence while hiding from monsters with ultra-sensitive hearing.",
-    poster: "https://m.media-amazon.com/images/M/MV5BMjI0MDMzNTQ0M15BMl5BanBnXkFtZTgwMTM5NzM
+    poster: "https://m.media-amazon.com/images/M/MV5BMjI0MDMzNTQ0M15BMl5BanBnXkFtZTgwMTM5NzM3NDM@._V1_.jpg"
+  }
+];
+
+// Function to get all unique genres from the movies dataset
+export const getAllGenres = (): string[] => {
+  const genresSet = new Set<string>();
+  
+  moviesData.forEach(movie => {
+    movie.genre.forEach(genre => {
+      genresSet.add(genre);
+    });
+  });
+  
+  return Array.from(genresSet).sort();
+};
+
+// Function to get the year range (min and max years) from the movies dataset
+export const getYearRange = (): { min: number; max: number } => {
+  const years = moviesData.map(movie => movie.year);
+  return {
+    min: Math.min(...years),
+    max: Math.max(...years)
+  };
+};
+
+// Function to get basic statistics about the movies dataset
+export const getMovieStats = (): { totalMovies: number; genreCount: number; yearRange: { min: number; max: number } } => {
+  return {
+    totalMovies: moviesData.length,
+    genreCount: getAllGenres().length,
+    yearRange: getYearRange()
+  };
+};
+
+// Function to get filtered movies based on filter parameters
+export const getFilteredMovies = (
+  filters: MovieFilterParams
+): PaginatedResponse<MovieDetails> => {
+  const { genres, minRating, yearRange, page = 1, pageSize = 10 } = filters;
+  
+  const filteredMovies = moviesData.filter(movie => {
+    // Filter by genre if genres are specified
+    const genreMatch = genres.length === 0 || 
+      movie.genre.some(g => genres.includes(g));
+    
+    // Filter by rating
+    const ratingMatch = movie.rating >= minRating;
+    
+    // Filter by year range
+    const yearMatch = 
+      movie.year >= yearRange.start && 
+      movie.year <= yearRange.end;
+    
+    return genreMatch && ratingMatch && yearMatch;
+  });
+
+  // Sort movies by rating (highest first)
+  filteredMovies.sort((a, b) => b.rating - a.rating);
+  
+  // Calculate pagination
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedMovies = filteredMovies.slice(startIndex, endIndex);
+  
+  return {
+    data: paginatedMovies,
+    totalPages: Math.ceil(filteredMovies.length / pageSize),
+    currentPage: page,
+    totalResults: filteredMovies.length
+  };
+};
+
+// Function to search movies by title and plot
+export const searchMovies = (
+  query: string,
+  page: number = 1,
+  pageSize: number = 10
+): PaginatedResponse<MovieDetails> => {
+  if (!query || query.trim() === '') {
+    return {
+      data: [],
+      totalPages: 0,
+      currentPage: page,
+      totalResults: 0
+    };
+  }
+  
+  const lowercaseQuery = query.toLowerCase().trim();
+  
+  const matchedMovies = moviesData.filter(movie => 
+    movie.title.toLowerCase().includes(lowercaseQuery) || 
+    movie.plot.toLowerCase().includes(lowercaseQuery) ||
+    movie.director.toLowerCase().includes(lowercaseQuery) ||
+    movie.genre.some(g => g.toLowerCase().includes(lowercaseQuery))
+  );
+  
+  // Calculate pagination
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedMovies = matchedMovies.slice(startIndex, endIndex);
+  
+  return {
+    data: paginatedMovies,
+    totalPages: Math.ceil(matchedMovies.length / pageSize),
+    currentPage: page,
+    totalResults: matchedMovies.length
+  };
+};
+
+// Function to get a movie by ID
+export const getMovieById = (id: number): MovieDetails | null => {
+  return moviesData.find(movie => movie.id === id) || null;
+};
+
+// Function to get recommended movies based on a movie
+export const getRecommendedMovies = (movieId: number): RecommendedMovie[] => {
+  const movie = getMovieById(movieId);
+  if (!movie) return [];
+  
+  const recommendedMovies = moviesData
+    .filter(m => m.id !== movieId) // Exclude the current movie
+    .map(m => {
+      // Calculate similarity score (simple algorithm)
+      let similarityScore = 0;
+      
+      // Genre match (biggest factor)
+      const genreOverlap = m.genre.filter(g => movie.genre.includes(g)).length;
+      similarityScore += genreOverlap * 0.5;
+      
+      // Director match
+      if (m.director === movie.director) {
+        similarityScore += 0.3;
+      }
+      
+      // Year proximity (closer years = more similar)
+      const yearDiff = Math.abs(m.year - movie.year);
+      if (yearDiff < 5) similarityScore += 0.2;
+      else if (yearDiff < 10) similarityScore += 0.1;
+      
+      // Rating similarity
+      const ratingDiff = Math.abs(m.rating - movie.rating);
+      if (ratingDiff < 0.5) similarityScore += 0.1;
+      
+      return {
+        ...m,
+        similarityScore
+      };
+    })
+    .sort((a, b) => b.similarityScore - a.similarityScore)
+    .slice(0, 5); // Get top 5 recommendations
+  
+  return recommendedMovies;
+};
+
+export default moviesData;
