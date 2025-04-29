@@ -21,4 +21,14 @@ export interface MovieFilterParams {
     start: number;
     end: number;
   };
+  page?: number;
+  pageSize?: number;
 }
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  totalPages: number;
+  currentPage: number;
+  totalResults?: number;
+}
+

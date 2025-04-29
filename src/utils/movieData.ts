@@ -1,6 +1,6 @@
 import { MovieDetails, RecommendedMovie } from "@/types/movie";
 
-// Top-rated movies dataset (simplified)
+// Top-rated movies dataset (expanded)
 const moviesData: MovieDetails[] = [
   {
     id: 1,
@@ -402,125 +402,72 @@ const moviesData: MovieDetails[] = [
     plot: "Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.",
     poster: "https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_.jpg"
   },
-];
-
-// User preferences mock (will be replaced by user input in the real app)
-let userPreferences = {
-  genres: [] as string[],
-  ratingThreshold: 8.5,
-  yearRange: { start: 1970, end: 2025 }
-};
-
-// Get unique genres from the dataset
-export const getUniqueGenres = (): string[] => {
-  const allGenres = new Set<string>();
-  moviesData.forEach(movie => {
-    movie.genre.forEach(g => allGenres.add(g));
-  });
-  return Array.from(allGenres).sort();
-};
-
-// Get year range
-export const getYearRange = (): { min: number; max: number } => {
-  const years = moviesData.map(movie => movie.year);
-  return {
-    min: Math.min(...years),
-    max: Math.max(...years)
-  };
-};
-
-// Filter movies based on genre and rating
-export const filterMovies = (
-  genres: string[] = [], 
-  minRating: number = 0,
-  yearRange: { start: number; end: number } = { start: 1900, end: 2030 }
-): MovieDetails[] => {
-  if (!genres.length) {
-    return moviesData.filter(
-      movie => movie.rating >= minRating && 
-      movie.year >= yearRange.start && 
-      movie.year <= yearRange.end
-    );
-  }
-
-  return moviesData.filter(movie => {
-    // Check if any of the movie's genres match the selected genres
-    const genreMatch = movie.genre.some(g => genres.includes(g));
-    const ratingMatch = movie.rating >= minRating;
-    const yearMatch = movie.year >= yearRange.start && movie.year <= yearRange.end;
-    
-    return genreMatch && ratingMatch && yearMatch;
-  });
-};
-
-// Update user preferences
-export const updatePreferences = (
-  genres: string[] = [], 
-  rating: number = 8.5,
-  years: { start: number; end: number } = { start: 1970, end: 2025 }
-) => {
-  userPreferences = {
-    genres,
-    ratingThreshold: rating,
-    yearRange: years
-  };
-};
-
-// Get all movies
-export const getAllMovies = (): MovieDetails[] => {
-  return moviesData;
-};
-
-// Get movie by ID
-export const getMovieById = (id: number): MovieDetails | undefined => {
-  return moviesData.find(movie => movie.id === id);
-};
-
-// Collaborative filtering recommendation system
-// This is a simplified version that recommends movies based on genre similarity
-export const getRecommendations = (
-  movie: MovieDetails, 
-  count: number = 5
-): RecommendedMovie[] => {
-  // Get all other movies (excluding the selected one)
-  const otherMovies = moviesData.filter(m => m.id !== movie.id);
-  
-  // Calculate similarity scores
-  const moviesWithScores = otherMovies.map(otherMovie => {
-    // Genre similarity (count common genres)
-    const commonGenres = movie.genre.filter(g => otherMovie.genre.includes(g));
-    const genreScore = commonGenres.length / Math.max(movie.genre.length, otherMovie.genre.length);
-    
-    // Rating similarity (normalized distance)
-    const ratingDiff = Math.abs(movie.rating - otherMovie.rating) / 10;
-    const ratingScore = 1 - ratingDiff;
-    
-    // Year similarity (normalized distance within 30 years)
-    const yearDiff = Math.abs(movie.year - otherMovie.year) / 30;
-    const yearScore = 1 - Math.min(1, yearDiff);
-    
-    // Combined score (weighted)
-    const score = genreScore * 0.6 + ratingScore * 0.3 + yearScore * 0.1;
-    
-    return {
-      ...otherMovie,
-      similarityScore: parseFloat(score.toFixed(2))
-    };
-  });
-  
-  // Sort by similarity score and return the top 'count' movies
-  return moviesWithScores
-    .sort((a, b) => b.similarityScore - a.similarityScore)
-    .slice(0, count);
-};
-
-// Search movies by title
-export const searchMovies = (query: string): MovieDetails[] => {
-  if (!query || query.trim() === "") return [];
-  
-  const normalizedQuery = query.toLowerCase().trim();
-  
-  return moviesData.filter(movie => 
-    movie.title.toLowerCase().includes(normalizedQuery)
-  );
-};
+  {
+    id: 41,
+    title: "Oppenheimer",
+    year: 2023,
+    genre: ["Biography", "Drama", "History"],
+    rating: 8.4,
+    director: "Christopher Nolan",
+    plot: "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg"
+  },
+  {
+    id: 42,
+    title: "Barbie",
+    year: 2023,
+    genre: ["Adventure", "Comedy", "Fantasy"],
+    rating: 7.0,
+    director: "Greta Gerwig",
+    plot: "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.",
+    poster: "https://m.media-amazon.com/images/M/MV5BNjZmYTk1MTktMDZlZS00ZGY0LTliMGEtOGU4NjQ4NTMzZDVhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg"
+  },
+  {
+    id: 43,
+    title: "Everything Everywhere All at Once",
+    year: 2022,
+    genre: ["Action", "Adventure", "Comedy"],
+    rating: 7.9,
+    director: "Daniel Kwan, Daniel Scheinert",
+    plot: "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save the world by exploring other universes connecting with the lives she could have led.",
+    poster: "https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg"
+  },
+  {
+    id: 44,
+    title: "Top Gun: Maverick",
+    year: 2022,
+    genre: ["Action", "Drama"],
+    rating: 8.3,
+    director: "Joseph Kosinski",
+    plot: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
+    poster: "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg"
+  },
+  {
+    id: 45,
+    title: "The Batman",
+    year: 2022,
+    genre: ["Action", "Crime", "Drama"],
+    rating: 7.8,
+    director: "Matt Reeves",
+    plot: "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtYzk4YTMwZjFmNzlkXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg"
+  },
+  {
+    id: 46,
+    title: "Dune",
+    year: 2021,
+    genre: ["Action", "Adventure", "Drama"],
+    rating: 8.0,
+    director: "Denis Villeneuve",
+    plot: "A noble family becomes embroiled in a war for control over the galaxy's most valuable asset while its heir becomes troubled by visions of a dark future.",
+    poster: "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
+  },
+  {
+    id: 47,
+    title: "A Quiet Place",
+    year: 2018,
+    genre: ["Drama", "Horror", "Sci-Fi"],
+    rating: 7.5,
+    director: "John Krasinski",
+    plot: "In a post-apocalyptic world, a family is forced to live in silence while hiding from monsters with ultra-sensitive hearing.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMjI0MDMzNTQ0M15BMl5BanBnXkFtZTgwMTM5NzM
