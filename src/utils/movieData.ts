@@ -1,4 +1,3 @@
-
 import { MovieDetails, RecommendedMovie } from "@/types/movie";
 
 // Top-rated movies dataset (simplified)
@@ -151,7 +150,7 @@ const moviesData: MovieDetails[] = [
     rating: 8.6,
     director: "Christopher Nolan",
     plot: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-    poster: "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+    poster: "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWEyZmItZTIwOTBlZDQ3NTQ1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
   },
   {
     id: 16,
@@ -202,6 +201,206 @@ const moviesData: MovieDetails[] = [
     director: "Hayao Miyazaki",
     plot: "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
     poster: "https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+  },
+  {
+    id: 21,
+    title: "Parasite",
+    year: 2019,
+    genre: ["Comedy", "Drama", "Thriller"],
+    rating: 8.5,
+    director: "Bong Joon Ho",
+    plot: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+    poster: "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg"
+  },
+  {
+    id: 22,
+    title: "Joker",
+    year: 2019,
+    genre: ["Crime", "Drama", "Thriller"],
+    rating: 8.4,
+    director: "Todd Phillips",
+    plot: "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.",
+    poster: "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
+  },
+  {
+    id: 23,
+    title: "Avengers: Endgame",
+    year: 2019,
+    genre: ["Action", "Adventure", "Drama"],
+    rating: 8.4,
+    director: "Anthony Russo, Joe Russo",
+    plot: "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg"
+  },
+  {
+    id: 24,
+    title: "Whiplash",
+    year: 2014,
+    genre: ["Drama", "Music"],
+    rating: 8.5,
+    director: "Damien Chazelle",
+    plot: "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
+    poster: "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+  },
+  {
+    id: 25,
+    title: "A Clockwork Orange",
+    year: 1971,
+    genre: ["Crime", "Drama", "Sci-Fi"],
+    rating: 8.3,
+    director: "Stanley Kubrick",
+    plot: "In the future, a sadistic gang leader is imprisoned and volunteers for a conduct-aversion experiment, but it doesn't go as planned.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMTY3MjM1Mzc4N15BMl5BanBnXkFtZTgwODM0NzAxMDE@._V1_.jpg"
+  },
+  {
+    id: 26,
+    title: "Get Out",
+    year: 2017,
+    genre: ["Horror", "Mystery", "Thriller"],
+    rating: 7.7,
+    director: "Jordan Peele",
+    plot: "A young African-American visits his white girlfriend's parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMjUxMDQwNjcyNl5BMl5BanBnXkFtZTgwNzcwMzc0MTI@._V1_.jpg"
+  },
+  {
+    id: 27,
+    title: "La La Land",
+    year: 2016,
+    genre: ["Comedy", "Drama", "Music"],
+    rating: 8.0,
+    director: "Damien Chazelle",
+    plot: "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg"
+  },
+  {
+    id: 28,
+    title: "Eternal Sunshine of the Spotless Mind",
+    year: 2004,
+    genre: ["Drama", "Romance", "Sci-Fi"],
+    rating: 8.3,
+    director: "Michel Gondry",
+    plot: "When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1_.jpg"
+  },
+  {
+    id: 29,
+    title: "Blade Runner 2049",
+    year: 2017,
+    genre: ["Action", "Drama", "Mystery"],
+    rating: 8.0,
+    director: "Denis Villeneuve",
+    plot: "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.",
+    poster: "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg"
+  },
+  {
+    id: 30,
+    title: "The Grand Budapest Hotel",
+    year: 2014,
+    genre: ["Adventure", "Comedy", "Crime"],
+    rating: 8.1,
+    director: "Wes Anderson",
+    plot: "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjMxMDIzMTE@._V1_.jpg"
+  },
+  {
+    id: 31,
+    title: "The Departed",
+    year: 2006,
+    genre: ["Crime", "Drama", "Thriller"],
+    rating: 8.5,
+    director: "Martin Scorsese",
+    plot: "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMTI1MTY2OTIxNV5BMl5BanBnXkFtZTYwNjQ4NjY3._V1_.jpg"
+  },
+  {
+    id: 32,
+    title: "Your Name",
+    year: 2016,
+    genre: ["Animation", "Drama", "Fantasy"],
+    rating: 8.4,
+    director: "Makoto Shinkai",
+    plot: "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
+    poster: "https://m.media-amazon.com/images/M/MV5BODRmZDVmNzUtZDA4ZC00NjhkLWI2M2UtN2M0ZDIzNDcxYThjL2ltYWdlXkEyXkFqcGdeQXVyNTk0MzMzODA@._V1_.jpg"
+  },
+  {
+    id: 33,
+    title: "1917",
+    year: 2019,
+    genre: ["Action", "Drama", "War"],
+    rating: 8.2,
+    director: "Sam Mendes",
+    plot: "April 6th, 1917. As a regiment assembles to wage war deep in enemy territory, two soldiers are assigned to race against time and deliver a message that will stop 1,600 men from walking straight into a deadly trap.",
+    poster: "https://m.media-amazon.com/images/M/MV5BOTdmNTFjNDEtNzg0My00ZjkxLTg1ZDAtZTdkMDc2ZmFiNWQ1XkEyXkFqcGdeQXVyNTAzNzgwNTg@._V1_.jpg"
+  },
+  {
+    id: 34,
+    title: "Drive",
+    year: 2011,
+    genre: ["Action", "Drama"],
+    rating: 7.8,
+    director: "Nicolas Winding Refn",
+    plot: "A mysterious Hollywood stuntman and mechanic moonlights as a getaway driver and finds himself in trouble when he helps out his neighbor.",
+    poster: "https://m.media-amazon.com/images/M/MV5BZjY5ZjQyMjMtMmEwOC00Nzc2LTllYTItMmU2MzJjNTg1NjY0XkEyXkFqcGdeQXVyNjQ1MTMzMDQ@._V1_.jpg"
+  },
+  {
+    id: 35,
+    title: "Black Swan",
+    year: 2010,
+    genre: ["Drama", "Thriller"],
+    rating: 8.0,
+    director: "Darren Aronofsky",
+    plot: "A committed dancer struggles to maintain her sanity after winning the lead role in a production of Tchaikovsky's 'Swan Lake'.",
+    poster: "https://m.media-amazon.com/images/M/MV5BNzY2NzI4OTE5MF5BMl5BanBnXkFtZTcwMjMyNDY4Mw@@._V1_.jpg"
+  },
+  {
+    id: 36,
+    title: "The Lighthouse",
+    year: 2019,
+    genre: ["Drama", "Fantasy", "Horror"],
+    rating: 7.4,
+    director: "Robert Eggers",
+    plot: "Two lighthouse keepers try to maintain their sanity while living on a remote and mysterious New England island in the 1890s.",
+    poster: "https://m.media-amazon.com/images/M/MV5BZmE0MGJhNmYtOWNjYi00Njc5LWE2YjEtMWMxZTVmODUwMmMxXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
+  },
+  {
+    id: 37,
+    title: "Hereditary",
+    year: 2018,
+    genre: ["Drama", "Horror", "Mystery"],
+    rating: 7.3,
+    director: "Ari Aster",
+    plot: "A grieving family is haunted by tragic and disturbing occurrences after the death of their secretive grandmother.",
+    poster: "https://m.media-amazon.com/images/M/MV5BOTU5MDg3OGItZWQ1Ny00ZGVmLTg2YTUtMzBkYzQ1YWIwZjlhXkEyXkFqcGdeQXVyNTAzMTY4MDA@._V1_.jpg"
+  },
+  {
+    id: 38,
+    title: "The Social Network",
+    year: 2010,
+    genre: ["Biography", "Drama"],
+    rating: 7.7,
+    director: "David Fincher",
+    plot: "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.",
+    poster: "https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+  },
+  {
+    id: 39,
+    title: "Prisoners",
+    year: 2013,
+    genre: ["Crime", "Drama", "Mystery"],
+    rating: 8.1,
+    director: "Denis Villeneuve",
+    plot: "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_.jpg"
+  },
+  {
+    id: 40,
+    title: "No Country for Old Men",
+    year: 2007,
+    genre: ["Crime", "Drama", "Thriller"],
+    rating: 8.2,
+    director: "Ethan Coen, Joel Coen",
+    plot: "Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.",
+    poster: "https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_.jpg"
   },
 ];
 
